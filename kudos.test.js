@@ -1,26 +1,13 @@
-const kudos = require('./kudos');
+const { getKudosForUser } = require('./kudos');
 
 test('test getKudosForUser', () => {
-  expect(kudos.getKudosForUser(30)).toEqual(['GOOD', 'NICE']);
-  expect(kudos.getKudosForUser(40)).toEqual(['GOOD', 'GOOD']);
-  expect(kudos.getKudosForUser(100)).toEqual(['SUPER']);
-  expect(kudos.getKudosForUser(135)).toEqual(['SUPER', 'GOOD', 'NICE', 'OK']);
-  expect(kudos.getKudosForUser(1000000)).toEqual(Array(10000).fill('SUPER'));
-});
+    expect(getKudosForUser(30)).toEqual(['GOOD', 'NICE']);
 
-test('test getKudosValueMessageForUser', () => {
-  expect(kudos.getKudosValueMessageForUser(kudos.getKudosForUser(30)))
-    .toEqual('Você recebeu treze reais em retorno aos kudos GOOD, NICE!');
-  expect(kudos.getKudosValueMessageForUser(kudos.getKudosForUser(40)))
-    .toEqual('Você recebeu dezesseis reais em retorno aos kudos GOOD, GOOD!');
-  expect(kudos.getKudosValueMessageForUser(kudos.getKudosForUser(100)))
-    .toEqual('Você recebeu vinte e cinco reais em retorno aos kudos SUPER!');
-  expect(kudos.getKudosValueMessageForUser(kudos.getKudosForUser(135)))
-    .toEqual('Você recebeu quarenta reais em retorno aos kudos SUPER, GOOD, NICE, OK!');
-  
-  const kudosArrayMsg = Array(40000).fill('SUPER').join(', ');
-
-  expect(kudos.getKudosValueMessageForUser(kudos.getKudosForUser(4000000)))
-    .toEqual(`Você recebeu um milhão de reais em retorno aos kudos ${kudosArrayMsg}!`);
-
+    expect(getKudosForUser(40)).toEqual(['GOOD', 'GOOD']);
+    
+    expect(getKudosForUser(100)).toEqual(['SUPER']);
+    
+    expect(getKudosForUser(135)).toEqual(['SUPER', 'GOOD', 'NICE', 'OK']);
+    
+    expect(getKudosForUser(1000000)).toEqual(Array(10000).fill('SUPER'));
 });
