@@ -11,7 +11,6 @@ const KUDOS_TO_REAL = {
 
 function valueWithCurrency(msg) {
     if (msg === 'um milhão') return `${msg} de reais`;
-    if (msg === 'um') return `${msg} real`; // não tem como já que o valor minimo é 2 reais, mas por prevenção :)
     return `${msg} reais`;
 } 
 
