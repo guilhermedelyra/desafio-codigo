@@ -22,17 +22,21 @@ const KUDOS_TO_REAL = {
   Recebe: um int representando o número de pontos do usuário
   Retorna: um array contendo os kudos. Ex.: ['OK', 'GOOD'] 
 */
+
+function buildKudosArray(result, quantityOfKudos, name) {
+  const kudos_array = Array(quantityOfKudos).fill(name)
+  return result.concat(kudos_array);
+}
+
 function getKudosForUser(points) {
   let result = [];
-  KUDOS_TO_POINTS.forEach((obj) => {
-    while (obj.value <= points) {
-      points -= obj.value;
-      result.push(obj.name);
-    }
+  KUDOS_TO_POINTS.forEach(({ name, value }) => {
+    const quantityOfKudos = Math.floor(points / value);
+    result = buildKudosArray(result, quantityOfKudos, name);
+    points -= quantityOfKudos * value;
   });
   return result;
 }
-
 
 /* 
   Recebe: Recebe um array contendo os nomes dos kudos de um usuário. Ex.: ['OK', 'GOOD']
